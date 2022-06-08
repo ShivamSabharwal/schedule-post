@@ -44,11 +44,27 @@ app.get("/",function(req,res){
 })
 
 app.post("/",function(req,res){
+  // console.log(req.body);
+  
   const {schedulDate, schedulTime} = req.body;
-  const month  = new Date(schedulDate).getMonth().toLocaleString();
-  // console.log(months.includes(date));
-  months.forEach()
-  console.log(req.body);
+  const reqObj = new Date(schedulDate);
+  const reqDate = reqObj.getDate()
+  const reqMonthNum = reqObj.getMonth();
+  const reqMonth = months[reqMonthNum+1];
+  const reqYear = reqObj.getFullYear();
+  const reqTime = schedulTime
+
+  const dateStr = `${reqMonth} ${reqDate}, ${reqYear} ${reqTime}:00`;
+  // console.log(dateStr);
+
+  task.push(schedule.scheduleJob(dateStr, ()=> {
+  console.log('@',new Date().toString)
+  
+}))
+
+res.redirect("/");
+
+
 })
 
 
