@@ -1,46 +1,57 @@
-// const cron = require('node-cron');
-// const shell = require('shelljs'); // this module helps in interacting with comand line
-// var uuid = require('uuid');
-
-
-// var task = cron.schedule('* * * * * *', () => {
-//   console.log('running a task every second');
-// },{
-//   scheduled: false,
-//   timezone: "Asia/Kolkata"
-// });
-
-// var task = cron.schedule('40 49 14 7 6 Tuesday', () => {
-//   console.log('running a task every second');
-// },{
-//   scheduled: false,
-//   timezone: "Asia/Kolkata"
-// });
-//
-// task.start();
-// task.stop();
-
-// **********************************************************************************************************
-
 const schedule = require('node-schedule')
+const express = require('express')
+const bodyParser = require('body-parser')
 
-// const dates = [
-//   new Date('June 7, 2022 14:55:00'),
-//   new Date('August 19, 2021 23:15:30'),
-//   new Date('March 13, 2021 04:20'),
-//   new Date('October 2, 2021 11:05')
-// ];
+const app = express();
+app.use(bodyParser.urlencoded({extended:true}));
+var task = new Array();
+
+const months  = {
+  1: 'January',
+  2: 'February',
+  3: 'March',
+  4: 'April',
+  5: 'May',
+  6: 'June',
+  7: 'July',
+  8: 'August',
+  9: 'September',
+  10: 'October',
+  11: 'November',
+  12: 'December'
+}
+
+
+// const someDate = new Date('June 8, 2022 11:28:10')
+// task.push(schedule.scheduleJob(someDate, ()=> {
+//   console.log('1st job ran @',new Date().toString)
+// }))
 //
-// dates.sort((date1, date2) => date1 - date2);
-// console.log(dates);
+// const somDate = new Date('June 8, 2022 11:28:00')
+// task.push(schedule.scheduleJob(somDate, ()=> {
+//   console.log('2nd job ran @',new Date().toString)
+// }))
 
-const someDate = new Date('June 7, 2022 15:43:00')
+// app.get("/",function(req,res){
+//   res.sendFile(__dirname+"/index.html");
+//
+// })
 
-schedule.scheduleJob(someDate, ()=> {
-  console.log('1st job ran @',new Date().toString)
-});
+//routes
 
-const somDate = new Date('June 7, 2022 15:43:05')
-schedule.scheduleJob(somDate, ()=> {
-  console.log('2nd job ran @',new Date().toString)
+app.get("/",function(req,res){
+  res.sendFile(__dirname+"/index.html");
+})
+
+app.post("/",function(req,res){
+  const {schedulDate, schedulTime} = req.body;
+  const month  = new Date(schedulDate).getMonth().toLocaleString();
+  // console.log(months.includes(date));
+  months.forEach()
+  console.log(req.body);
+})
+
+
+app.listen(8080,function(){
+  console.log("Server started on port 8080");
 });
