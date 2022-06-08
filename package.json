@@ -1,0 +1,17 @@
+{
+  "name": "cron",
+  "version": "1.0.0",
+  "description": "trying cron ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shivam Sabharwal",
+  "license": "ISC",
+  "dependencies": {
+    "node-cron": "^3.0.1",
+    "node-schedule": "^2.1.0",
+    "shelljs": "^0.8.5",
+    "uuid": "^8.3.2"
+  }
+}
